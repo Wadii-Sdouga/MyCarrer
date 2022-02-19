@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Profil</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+
+
+  <link rel="stylesheet" href="public/Mystyle.css">
+</head>
+
+
+
+
+<body>
+
+  <div id="viewport">
+    <%- include('sideBar') -%>
+
+
+
+      <br>
+      <table class="table-fill">
+        <thead>
+          <tr>
+            <th class="text-left">Compétences</th>
+            <th class="text-left">Niveau</th>
+          
+          </tr>
+        </thead>
+        <tbody class="table-hover">
+
+
+          <%var i=0; if (data.length!=0){ data.forEach(function(name){ %>
+
+            <tr>
+              <td class="text-left">
+                <%=name.nomT %>
+              </td>
+              <td class="text-left">
+
+                <form method="post" action="http://localhost:5000/profil">
+                  <div class="showcase">
+                    <div class="rating-system1">
+                      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+                      <input type="checkbox" class="niveau<%= i %>" name="rate<%= i %>" value="0" />
+                      <label for="star5">Pas de connaissance</label>
+                      <br>
+
+                      <input type="checkbox" name="rate<%= i %>" class=" niveau<%= i %>" value="1" />
+                      <label for="star4">Connaissance théorique</label>
+                      <br>
+                      <input type="checkbox" name="rate<%= i %>" class="niveau<%= i %>" value="2" />
+                      <label for="star3">Première expérience</label>
+                      <br>
+                      <input type="checkbox" name="rate<%= i %>" class="niveau<%= i %>" value="3" />
+                      <label for="star2">Bonne expérience</label>
+                      <br>
+                      <input type="checkbox" name="rate<%= i %>" class="niveau<%= i %>" value="4" />
+                      <label for="star1">niveau expert</label>
+
+                      <script type="text/javascript">
+                        $(document).ready(function () {
+                          $('.niveau<%= i %>').click(function () {
+                            $('.niveau<%= i %>').not(this).prop('checked', false);
+                          });
+                        });
+                      </script>
+
+                    </div>
+                  </div>
+
+
+
+              </td>
+            
+              
+                <% i++;%>
+
+  </div>
+  
+  </tr>
+
+  <% });} %>
+    
+    </tbody>
+    </table>
+    <br>
+
+</body>
+<input type="submit" class="btn" name="btn<%= i %>" value="Confirmer" style="text-align: center;">
+</form>
+</html>
